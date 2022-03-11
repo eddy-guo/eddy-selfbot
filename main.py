@@ -19,3 +19,12 @@ for tweet in range(len(media_info)):
         links.append(media_info[tweet]["preview_image_url"])
 print()
 print(links)
+
+# list of tweet text
+text_info = eval(data.content)["data"]
+text = []
+for tweet in range(len(text_info)):
+    if "text" in text_info[tweet]:
+        text.append(text_info[tweet]["text"])
+print()
+print(text)
