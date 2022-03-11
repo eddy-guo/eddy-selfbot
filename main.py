@@ -26,8 +26,8 @@ async def on_message(message):
     headers = {
         'Authorization': f'Bearer {BEARER_TOKEN}',
     }
-    data = requests.get('https://api.twitter.com/2/tweets/20', headers=headers)
-    response = eval(data.text)['data']['text']
+    data = requests.get('https://api.twitter.com/2/users/1453616508035272705/tweets', headers=headers) # https://tweeterid.com/
+    response = eval(data.text)['data'][0]
     await ctx.send(response)
 
 bot.run(TOKEN)
