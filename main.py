@@ -1,4 +1,4 @@
-import os, discord, pdb
+import os, discord, requests, pdb
 from dotenv import load_dotenv
 from discord.ext import commands
 
@@ -6,6 +6,7 @@ load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+BEARER_TOKEN = os.getenv('BEARER_TOKEN')
 
 intents = discord.Intents.default()
 intents.members = True
@@ -22,6 +23,11 @@ async def on_message(message):
     if message.author == bot.user:
         return
     ctx = await bot.get_context(message)
-    await ctx.send("Hi!")
+    headers = {
+        'Authorization': f'Bearer {BEARER_TOKEN}',
+    }
+    data = requests.get('https://api.twitter.com/2/tweets/20', headers=headers)
+    response = eval(data.text)['data']['text']
+    await ctx.send(response)
 
 bot.run(TOKEN)
