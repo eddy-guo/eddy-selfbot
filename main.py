@@ -23,11 +23,14 @@ async def on_message(message):
     if message.author == bot.user:
         return
     ctx = await bot.get_context(message)
+
+    user = int(message.content)
     headers = {
         'Authorization': f'Bearer {BEARER_TOKEN}',
     }
-    data = requests.get('https://api.twitter.com/2/users/1453616508035272705/tweets', headers=headers) # https://tweeterid.com/
-    response = eval(data.text)['data'][0]
+    data = requests.get(f'https://api.twitter.com/2/users/{user}/tweets', headers=headers) # https://tweeterid.com/
+    
+    response = eval(data.text)['data'][0] # 0 for most recent tweet
     await ctx.send(response)
 
 bot.run(TOKEN)
