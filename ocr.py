@@ -1,9 +1,16 @@
-from PIL import Image
-import pytesseract
+from pytesseract import Output
+import pytesseract, cv2
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-im = Image.open("images/test.jpeg")
-text = pytesseract.image_to_string(im, lang = 'eng')
+im = cv2.imread("images/code1.jpg")
+results = pytesseract.image_to_string(im, lang = 'eng')
 
-print(text)
+results_list = results.replace(" ", "").split("\n")
+print(results_list)
+
+for item in results_list:
+    if item == "":
+        results_list.remove(item)
+
+print(results_list)
