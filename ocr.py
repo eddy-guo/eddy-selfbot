@@ -7,10 +7,5 @@ im = cv2.imread("images/code1.jpg")
 results = pytesseract.image_to_string(im, lang = 'eng')
 
 results_list = results.replace(" ", "").split("\n")
-print(results_list)
-
-for item in results_list:
-    if item == "":
-        results_list.remove(item)
-
-print(results_list)
+final_list = list(filter(None, results_list))
+print(final_list)
