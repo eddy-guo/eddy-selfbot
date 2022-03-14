@@ -8,7 +8,7 @@ BEARER_TOKEN = os.getenv('BEARER_TOKEN')
 headers = {
     'Authorization': f'Bearer {BEARER_TOKEN}',
 }
-data = requests.get(f'https://api.twitter.com/2/users/1453616508035272705/tweets?max_results=5&expansions=attachments.media_keys&media.fields=preview_image_url,url', headers=headers) # https://tweeterid.com/
+data = requests.get(f'https://api.twitter.com/2/users/1453616508035272705/tweets?max_results=100&expansions=attachments.media_keys&media.fields=preview_image_url,url', headers=headers) # https://tweeterid.com/
 
 # list of tweet media links
 media_info = eval(data.content)["includes"]["media"]
