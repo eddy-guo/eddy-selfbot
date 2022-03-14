@@ -1,5 +1,4 @@
 import os, requests, re
-from sre_constants import SUCCESS
 from dotenv import load_dotenv
 
 load_dotenv()
