@@ -1,4 +1,3 @@
-from pytesseract import Output
 import pytesseract, cv2
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -13,8 +12,8 @@ print(
 )
 print("-" * 40)
 
-results_list = results.replace(" ", "").split("\n")
-final_list = list(filter(None, results_list))
+results_list = results.replace(" ", "").split("\n") # remove spaces and split string into list of strings by newlines
+final_list = list(filter(None, results_list)) # filter out empty strings in list
 
 print(
     'Final list of strings: \n'
