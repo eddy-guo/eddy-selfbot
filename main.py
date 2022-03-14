@@ -20,7 +20,7 @@ for tweet in range(len(media_info)):
         links.append(media_info[tweet]["preview_image_url"])
 print(
     '\n'
-    'Media links: \n'
+    'Media links:\n'
     f'{links}'
 )
 
@@ -30,27 +30,14 @@ text = []
 for tweet in range(len(text_info)):
     if "text" in text_info[tweet]:
         text.append(text_info[tweet]["text"].encode('utf-16', 'surrogatepass').decode('utf-16'))
-print('-' * 200)
-print(
-    "Raw tweets: "
-    f'{text}'
-)
 
 # remove spaces and emojis from raw text
 new_text = []
 for x in range(len(text)):
     temp = clean(text[x], no_emoji=True) # no emojis
     new_text.append(temp.replace(" ", "")) # no spaces
-    
-print('-' * 200)
 print(
-    "Edited raw tweets: "
-    f'{new_text}'
+    '\n'
+    'Edited raw tweets:\n'
+    f'{new_text}\n'
 )
-
-# tweets with proper encoding (display purposes)
-print("-" * 200)
-print("Encoded tweets:")
-for x in range(len(text)):
-    print(text[x].encode('utf-16', 'surrogatepass').decode('utf-16'))
-    print("-" * 200)
