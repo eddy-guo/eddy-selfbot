@@ -34,7 +34,7 @@ for tweet in range(len(text_info)):
 # remove spaces and emojis from raw text
 new_text = []
 for x in range(len(text)):
-    temp = clean(text[x], no_emoji=True) # no emojis
+    temp = clean(text[x], no_emoji=True, lower=False) # no emojis
     new_text.append(temp.replace(" ", "")) # no spaces
 print(
     '\n'
