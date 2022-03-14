@@ -23,7 +23,6 @@ print(
     'Media links: \n'
     f'{links}'
 )
-print('-' * 200)
 
 # list of raw text
 text_info = eval(data.content)["data"]
@@ -31,9 +30,20 @@ text = []
 for tweet in range(len(text_info)):
     if "text" in text_info[tweet]:
         text.append(text_info[tweet]["text"].encode('utf-16', 'surrogatepass').decode('utf-16'))
+print('-' * 200)
 print(
-    "Raw text: "
+    "Raw tweets: "
     f'{text}'
+)
+
+# remove spaces, newlines, and emojis from raw text
+new_text = []
+for x in range(len(text)):
+    new_text.append(text[x].replace(" ", ""))
+print('-' * 200)
+print(
+    "Edited raw tweets: "
+    f'{new_text}'
 )
 
 # tweets with proper encoding
