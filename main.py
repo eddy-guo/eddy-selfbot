@@ -1,4 +1,4 @@
-import os, requests, re
+import os, requests
 from cleantext import clean
 from dotenv import load_dotenv
 
@@ -8,7 +8,7 @@ BEARER_TOKEN = os.getenv('BEARER_TOKEN')
 headers = {
     'Authorization': f'Bearer {BEARER_TOKEN}',
 }
-data = requests.get(f'https://api.twitter.com/2/users/1453616508035272705/tweets?max_results=100&expansions=attachments.media_keys&media.fields=preview_image_url,url', headers=headers) # https://tweeterid.com/
+data = requests.get(f'https://api.twitter.com/2/users/1453616508035272705/tweets?max_results=5&expansions=attachments.media_keys&media.fields=preview_image_url,url', headers=headers) # https://tweeterid.com/
 
 # list of tweet media links
 media_info = eval(data.content)["includes"]["media"]
@@ -21,37 +21,27 @@ for tweet in range(len(media_info)):
 print(
     '\n'
     'Media links:\n'
-    f'{links}'
+    f'{links}\n'
 )
 
 # list of raw text
 text_info = eval(data.content)["data"]
-text = []
+text = ""
 for tweet in range(len(text_info)):
     if "text" in text_info[tweet]:
-        text.append(text_info[tweet]["text"].encode('utf-16', 'surrogatepass').decode('utf-16'))
+        text += clean(text_info[tweet]["text"].encode('utf-16', 'surrogatepass').decode('utf-16'), no_emoji=True, lower=False).replace(" ", "").replace('\n', '')
 
-# remove spaces and emojis from raw text
-new_text = []
-for x in range(len(text)):
-    temp = clean(text[x], no_emoji=True, lower=False) # no emojis
-    new_text.append(temp.replace(" ", "")) # no spaces
-print(
-    '\n'
-    'Edited raw tweets:\n'
-    f'{new_text}\n'
-)
-
-# testing
-example = "ill-listwinners@EvkozFootball@TauLeBi@Blitz_ethPleaseDMuswithyourDiscordnametoclaim"
+print(text)
 
 def get_loop(n):
     my_list = []
-    for i in range(len(example)):
-        my_list.append(example[i:i+n])
+    for i in range(len(text)):
+        my_list.append(text[i:i+n])
     del my_list[-n+1:]
     return my_list
 
 for i in range(7, 11):
     my_list = get_loop(i)
+    print()
     print(my_list)
+    print(len(my_list))
