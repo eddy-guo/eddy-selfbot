@@ -41,3 +41,17 @@ print(
     'Edited raw tweets:\n'
     f'{new_text}\n'
 )
+
+# testing
+example = "ill-listwinners@EvkozFootball@TauLeBi@Blitz_ethPleaseDMuswithyourDiscordnametoclaim"
+
+def get_loop(n):
+    my_list = []
+    for i in range(len(example)):
+        my_list.append(example[i:i+n])
+    del my_list[-n+1:]
+    return my_list
+
+for i in range(7, 11):
+    my_list = get_loop(i)
+    print(my_list)
