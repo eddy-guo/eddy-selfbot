@@ -1,4 +1,4 @@
-import asyncio
+import asyncio, time
 from pyppeteer import launch
 
 input_selector = '#app-mount > div.app-3xd6d0 > div > div > div > div > form > div > div.block-3uVSn4.marginTop40-Q4o1tS > div.marginBottom8-emkd0_ > div > input'
@@ -15,9 +15,10 @@ async def main():
         'Eddy Guo'
         )
     await page.screenshot({'path': 'before.png'})
-    
+
     await page.click(submit_selector)
-    await page.waitForNavigation();
-    await page.screenshot({'path': 'before.png'})
+    await page.waitForXPath('//*[@id="app-mount"]/div[2]/div/div/div/section/div')
+    await page.screenshot({'path': 'after.png'})
+    await browser.close()
 
 asyncio.get_event_loop().run_until_complete(main())
