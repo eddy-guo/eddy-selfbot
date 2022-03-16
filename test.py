@@ -8,12 +8,16 @@ async def main():
     browser = await launch({'headless': False}, executablePath="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
     page = await browser.newPage()
     await page.goto('https://discord.gg/F4FjDku3')
+    
     await page.waitForSelector(input_selector)
-
     await page.type(
         f'{input_selector}',
         'Eddy Guo'
         )
+    await page.screenshot({'path': 'before.png'})
+    
     await page.click(submit_selector)
+    await page.waitForNavigation();
+    await page.screenshot({'path': 'before.png'})
 
 asyncio.get_event_loop().run_until_complete(main())
