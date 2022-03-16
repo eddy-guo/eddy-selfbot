@@ -8,10 +8,9 @@ async def main():
     browser = await launch({'headless': False,
                             'executablePath': 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe',
                             'args': [
-                                     r'--user-data-dir=C:\Users\Eddy\AppData\Local\Google\Chrome\User Data', 
-                                     '--profile-directory=Profile 6',
-                                     '--no-sandbox'
-                                     ]
+                                       r'--user-data-dir=C:\Users\Eddy\AppData\Local\Google\Chrome\User Data', 
+                                       '--profile-directory=Profile 6',
+                                       ]
                             })
     page = await browser.newPage()
     await page.goto('https://discord.gg/F4FjDku3')
@@ -26,6 +25,7 @@ async def main():
     await page.click(submit_selector)
     await page.waitForXPath('//*[@id="app-mount"]/div[2]/div/div/div/section/div')
     await page.screenshot({'path': 'after.png'})
+    time.sleep(15)
     await browser.close()
 
 asyncio.get_event_loop().run_until_complete(main())
