@@ -5,7 +5,14 @@ input_selector = '#app-mount > div.app-3xd6d0 > div > div > div > div > form > d
 submit_selector = '#app-mount > div.app-3xd6d0 > div > div > div > div > form > div > div.block-3uVSn4.marginTop40-Q4o1tS > div:nth-child(3) > button > div'
 
 async def main():
-    browser = await launch({'headless': False}, executablePath="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+    browser = await launch({'headless': False,
+                            'executablePath': 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe',
+                            'args': [
+                                     r'--user-data-dir=C:\Users\Eddy\AppData\Local\Google\Chrome\User Data', 
+                                     '--profile-directory=Profile 6',
+                                     '--no-sandbox'
+                                     ]
+                            })
     page = await browser.newPage()
     await page.goto('https://discord.gg/F4FjDku3')
     
