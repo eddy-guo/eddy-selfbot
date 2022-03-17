@@ -1,8 +1,8 @@
-import asyncio, time
+import asyncio
 from pyppeteer import launch
 
-input_selector = '#app-mount > div.app-3xd6d0 > div > div > div > div > form > div > div.block-3uVSn4.marginTop40-Q4o1tS > div.marginBottom8-emkd0_ > div > input'
-submit_selector = '#app-mount > div.app-3xd6d0 > div > div > div > div > form > div > div.block-3uVSn4.marginTop40-Q4o1tS > div:nth-child(3) > button > div'
+continue_selector = '#app-mount > div.app-3xd6d0 > div > div > div > section > div > button > div'
+login_selector = '#app-mount > div.app-3xd6d0 > div > div > div > div > form > div > div > div.mainLoginContainer-wHmAjP > div.block-3uVSn4.marginTop20-2T8ZJx > button.marginBottom8-emkd0_.button-1cRKG6.button-f2h6uQ.lookFilled-yCfaCM.colorBrand-I6CyqQ.sizeLarge-3mScP9.fullWidth-fJIsjq.grow-2sR_-F > div'
 
 async def main():
     browser = await launch({'headless': False,
@@ -15,17 +15,13 @@ async def main():
     page = await browser.newPage()
     await page.goto('https://discord.gg/F4FjDku3')
     
-    await page.waitForSelector(input_selector)
-    await page.type(
-        f'{input_selector}',
-        'Eddy Guo'
-        )
-    await page.screenshot({'path': 'before.png'})
+    await page.waitForSelector(continue_selector)
+    await page.click(continue_selector)
+    await page.waitForSelector(login_selector)
+    await page.click(login_selector)
 
-    await page.click(submit_selector)
-    await page.waitForXPath('//*[@id="app-mount"]/div[2]/div/div/div/section/div')
-    await page.screenshot({'path': 'after.png'})
-    time.sleep(15)
     await browser.close()
 
 asyncio.get_event_loop().run_until_complete(main())
+
+# will no longer run; alt account disabled for botting HAHA
