@@ -38,17 +38,18 @@ for tweet in range(len(text_info)):
     if "text" in text_info[tweet]:
         text += clean(text_info[tweet]["text"].encode('utf-16', 'surrogatepass').decode('utf-16'), no_emoji=True, lower=False).replace(" ", "").replace('\n', '')
 
-print(text)
-
+# iterate through text and add every n-letter code into a list
 def get_loop(n):
-    my_list = []
+    code_list = []
     for i in range(len(text)):
-        my_list.append(text[i:i+n])
-    del my_list[-n+1:]
-    return my_list
+        code_list.append(text[i:i+n])
+    del code_list[-n+1:]
+    return code_list
 
+# attach all 7, 8, 9, and 10-letter code lists into one list
+final_list = []
 for i in range(7, 11):
-    my_list = get_loop(i)
-    print()
-    print(my_list)
-    print(len(my_list))
+    code_list = get_loop(i)
+    final_list += code_list
+print(final_list)
+print(len(final_list))
