@@ -47,9 +47,9 @@ def get_loop(n):
     return code_list
 
 # attach all 7, 8, 9, and 10-letter code lists into one list
-final_list = []
+text_list = []
 for i in range(7, 11):
     code_list = get_loop(i)
-    final_list += code_list
-print(final_list)
-print(len(final_list))
+    text_list += code_list
+print(text_list)
+print(len(text_list))

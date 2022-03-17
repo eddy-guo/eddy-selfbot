@@ -13,9 +13,9 @@ print(
 print("-" * 40)
 
 results_list = results.replace(" ", "").split("\n") # remove spaces and split string into list of strings by newlines
-final_list = list(filter(None, results_list)) # filter out empty strings in list
+ocr_list = list(filter(None, results_list)) # filter out empty strings in list
 
 print(
     'Final list of strings: \n'
-    f'{final_list}')
+    f'{ocr_list}')
 print("-" * 40)
